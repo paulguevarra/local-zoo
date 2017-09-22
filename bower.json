@@ -1,0 +1,20 @@
+{
+  "name": "local-zoo",
+  "description": "animal tracking software",
+  "main": "",
+  "authors": [
+    "Paul Guevarra <p.a.guevarra@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/paulguevarra/local-zoo.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
