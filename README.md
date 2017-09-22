@@ -20,7 +20,7 @@ _animal database tracker._
 | Description                                        | Input                                       | Output              |
 | -------------------------------------------------- | -------------------------------------------:| ------------------: |
 | create a new animal object and add to the current List | "new animal" | list: Lion, Tiger, Panda, Unicorn, "new animal" |
-| get all animals in database  | show all | list: list: Lion, Tiger, Panda, Unicorn |
+| get all animals in database  | show all | list: Lion, Tiger, Panda, Unicorn |
 | filter and display only animals with chosen property | Herbivore | list: Panda, Unicorn |
 | edit animal details | change name from "King" to "Queen" | new name is "Queen"  |
 
