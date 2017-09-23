@@ -7,19 +7,33 @@ import { Component } from '@angular/core';
     <h1>Local Zoo for {{month}}/{{day}}/{{year}}</h1>
     <h3>{{currentFocus}}</h3>
     <ul>
-      <li [class]="sortAge(currentAnimal)" (click)="isDone(currentAnimal)" *ngFor="let currentAnimal of animals">{{currentAnimal.species}} <button (click)="editAnimal()">Edit!</button>
-<ul>
-  <li>Name: {{this.currentAnimal.name}}</li>
-  <li>Age: {{this.currentAnimal.age}}</li>
-  <li>Diet: {{this.currentAnimal.diet}}</li>
-  <li>Location: {{this.currentAnimal.location}}</li>
-  <li>Caretakers: {{this.currentAnimal.caretakers}}</li>
-  <li>Sex: {{this.currentAnimal.sex}}</li>
-  <li>Likes: {{this.currentAnimal.likes}}</li>
-  <li>Dislikes: {{this.currentAnimal.dislikes}}</li>
-</ul>
+      <li [class]="sortAge(currentAnimal)" (click)="isDone(currentAnimal)" *ngFor="let currentAnimal of animals">{{currentAnimal.species}} <button (click)="editAnimal(currentAnimal)">Edit!</button>
+        <ul>
+          <li>Name: {{this.currentAnimal.name}}</li>
+          <li>Age: {{this.currentAnimal.age}}</li>
+          <li>Diet: {{this.currentAnimal.diet}}</li>
+          <li>Location: {{this.currentAnimal.location}}</li>
+          <li>Caretakers: {{this.currentAnimal.caretakers}}</li>
+          <li>Sex: {{this.currentAnimal.sex}}</li>
+          <li>Likes: {{this.currentAnimal.likes}}</li>
+          <li>Dislikes: {{this.currentAnimal.dislikes}}</li>
+        </ul>
       </li>
     </ul>
+    <hr>
+    <div>
+      <h3>{{selectedAnimal.species}}</h3>
+      <p>Task Complete? {{selectedAnimal.done}}</p>
+      <h3>Edit Animal</h3>
+      <label>Enter Animal Name:</label>
+      <input [(ngModel)]="selectedAnimal.name">
+      <br>
+      <label>Enter Animal Age:</label>
+      <input [(ngModel)]="selectedAnimal.age">
+      <br>
+      <label>Enter Animal Caretakers:</label>
+      <input [(ngModel)]="selectedAnimal.caretakers">
+   </div>
   </div>
   `
 })
@@ -35,10 +49,13 @@ export class AppComponent {
     new Animal('Tiger', 'Nala', 1, 'Carnivore', 'Savannah', 5, 'Male', 'Skittles', 'Coldplay'),
     new Animal('Panda', 'Po', 2, 'Herbivore', 'Asia', 2, 'Male', 'Noodles', 'Homework'),
     new Animal('Unicorn', 'Juan', 8, 'Herbivore', 'Fantasy', 3, 'Female', 'Skittles', 'Coldplay'),
-  ]
-  editAnimal() {
-  alert("You just requested to edit an Animal!");
+  ];
+  selectedAnimal: Animal = this.animals[0];
+
+  editAnimal(clickedAnimal) {
+    this.selectedAnimal = clickedAnimal;
   }
+
   isDone(clickedAnimal: Animal) {
     if(clickedAnimal.done === true) {
       alert("This Animal is done!");
@@ -46,6 +63,7 @@ export class AppComponent {
       alert("This Animal is not done. Better get to work!");
     }
   }
+
   sortAge(currentAnimal){
     if (currentAnimal.age < 2){
       return "bg-success";
