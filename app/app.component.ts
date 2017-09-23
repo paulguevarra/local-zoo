@@ -9,18 +9,37 @@ import { Animal } from './animal.model';
     <h3>{{currentFocus}}</h3>
     <animal-list [childAnimalList]="masterAnimalList" (clickSender)="editAnimal($event)"></animal-list>
     <hr>
+    <new-animal (newAnimalSender)="addAnimal($event)"></new-animal>
     <div *ngIf="selectedAnimal">
       <h3>{{selectedAnimal.species}}</h3>
       <p>Task Complete? {{selectedAnimal.done}}</p>
       <h3>Edit Animal</h3>
+      <label>Enter Animal Species:</label>
+      <input [(ngModel)]="selectedAnimal.species">
+      <br>
       <label>Enter Animal Name:</label>
       <input [(ngModel)]="selectedAnimal.name">
       <br>
       <label>Enter Animal Age:</label>
       <input [(ngModel)]="selectedAnimal.age">
       <br>
+      <label>Enter Animal Diet:</label>
+      <input [(ngModel)]="selectedAnimal.diet">
+      <br>
+      <label>Enter Animal Location:</label>
+      <input [(ngModel)]="selectedAnimal.location">
+      <br>
       <label>Enter Animal Caretakers:</label>
       <input [(ngModel)]="selectedAnimal.caretakers">
+      <br>
+      <label>Enter Animal Sex:</label>
+      <input [(ngModel)]="selectedAnimal.sex">
+      <br>
+      <label>Enter Animal Likes:</label>
+      <input [(ngModel)]="selectedAnimal.likes">
+      <br>
+      <label>Enter Animal Dislikes:</label>
+      <input [(ngModel)]="selectedAnimal.dislikes">
       <br>
       <button (click)="finishedEditing()">Done</button>
    </div>
@@ -52,5 +71,8 @@ export class AppComponent {
   finishedEditing() {
     this.selectedAnimal = null;
   }
+  addAnimal(newAnimalFromChild: Animal) {
+  this.masterAnimalList.push(newAnimalFromChild);
+}
 
 }
