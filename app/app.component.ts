@@ -21,7 +21,7 @@ import { Component } from '@angular/core';
       </li>
     </ul>
     <hr>
-    <div>
+    <div *ngIf="selectedAnimal">
       <h3>{{selectedAnimal.species}}</h3>
       <p>Task Complete? {{selectedAnimal.done}}</p>
       <h3>Edit Animal</h3>
@@ -33,6 +33,8 @@ import { Component } from '@angular/core';
       <br>
       <label>Enter Animal Caretakers:</label>
       <input [(ngModel)]="selectedAnimal.caretakers">
+      <br>
+      <button (click)="finishedEditing()">Done</button>
    </div>
   </div>
   `
@@ -50,7 +52,7 @@ export class AppComponent {
     new Animal('Panda', 'Po', 2, 'Herbivore', 'Asia', 2, 'Male', 'Noodles', 'Homework'),
     new Animal('Unicorn', 'Juan', 8, 'Herbivore', 'Fantasy', 3, 'Female', 'Skittles', 'Coldplay'),
   ];
-  selectedAnimal: Animal = this.animals[0];
+  selectedAnimal: Animal = null;
 
   editAnimal(clickedAnimal) {
     this.selectedAnimal = clickedAnimal;
@@ -63,7 +65,9 @@ export class AppComponent {
       alert("This Animal is not done. Better get to work!");
     }
   }
-
+  finishedEditing() {
+    this.selectedAnimal = null;
+  }
   sortAge(currentAnimal){
     if (currentAnimal.age < 2){
       return "bg-success";
